@@ -17,10 +17,12 @@ app.use(json());
 app.use(cors());
 
 const userSchema = new Schema({
-  name: String,
-  phone: String,
-  gender: String,
-  password: String,
+  name: { type: String, required: true },
+  phone: { type: String, required: true },
+  email: { type: String, required: true },
+  gender: { type: String, required: true },
+  password: { type: String, required: true }, // Consider hashing passwords in a real application
+
 });
 
 const User = model('User', userSchema);
@@ -40,8 +42,8 @@ app.get('/users', async (req, res) => {
 
 app.post('/signup', async (req, res) => {
   try {
-    const { name, phone, email, gender } = req.body;
-    const user = new User({ name, phone, email, gender });
+    const { name, phone, email, gender, password } = req.body;
+    const user = new User({ name, phone, email, gender, password });
     await user.save();
     res.status(201).send(user);
   } catch (error) {
