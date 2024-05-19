@@ -20,7 +20,6 @@ const userSchema = new Schema({
   name: { type: String, required: true },
   phone: { type: String, required: true },
   email: { type: String, required: true },
-  gender: { type: String, required: true }
 
 });
 
@@ -41,8 +40,8 @@ app.get('/users', async (req, res) => {
 
 app.post('/signup', async (req, res) => {
   try {
-    const { name, phone, email, gender} = req.body;
-    const user = new User({ name, phone, email, gender});
+    const { name, phone, email} = req.body;
+    const user = new User({ name, phone, email});
     await user.save();
     res.status(201).send(user);
   } catch (error) {
