@@ -15,7 +15,7 @@ const uri=process.env.MONGO_URI
 const { json } = pkg;
 connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const PORT=process.env.PORT || 4000;
+
 
 
 
@@ -104,6 +104,6 @@ app.delete('/users/:id', async (req, res) => {
   res.send({ message: 'User deleted' });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(6386, () => console.log(`Server running on port `));
 
 export default app;
