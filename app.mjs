@@ -1,5 +1,5 @@
 import express from 'express';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import { connect, Schema, model } from 'mongoose';
 import pkg from 'body-parser';
 import cors from 'cors';
@@ -8,14 +8,8 @@ import multer from 'multer';
 const app = express();
 // const uri = MONGO_URI;
 
-dotenv.config({ 
-  path:'./.env'} 
-)
-const uri=process.env.MONGO_URI
 const { json } = pkg;
-connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-
+connect('mongodb+srv://faltuwali01:XzfhSAFtrQcAuc1T@users.ijohrh3.mongodb.net/?retryWrites=true&w=majority&appName=Users', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 
@@ -104,6 +98,6 @@ app.delete('/users/:id', async (req, res) => {
   res.send({ message: 'User deleted' });
 });
 
-app.listen(5000, () => console.log(`Server running on port `));
+app.listen(5000, () => console.log(`Server running on port 5000 `));
 
 export default app;
