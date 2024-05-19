@@ -3,7 +3,7 @@ import express from 'express';
 import { connect, Schema, model } from 'mongoose';
 import pkg from 'body-parser';
 import cors from 'cors';
-import multer from 'multer';
+// import multer from 'multer';
 // import path from 'path';
 const app = express();
 // const uri = MONGO_URI;
@@ -19,8 +19,6 @@ app.use(cors());
 const userSchema = new Schema({
   name: String,
   phone: String,
-  profilePhoto: String,
-  coverPhoto: String,
   gender: String,
   password: String,
 });
@@ -52,18 +50,13 @@ app.get('/users', async (req, res) => {
 });
 
 
-app.post('/signup', upload.fields([{ name: 'profilePhoto', maxCount: 1 }, 
-{ name: 'coverPhoto', maxCount: 1 }]), async (req, res) => {
+app.post('/signup', async (req, res) => {
   try {
     const { name, phone,email, gender } = req.body;
-    const profilePhoto = req.files['profilePhoto'].path;
-    const coverPhoto = req.files['coverPhoto'].path;
     
     const user = new User({
       name,
       phone,
-      profilePhoto,
-      coverPhoto,
       gender,
       email
     });
