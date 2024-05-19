@@ -24,18 +24,6 @@ const userSchema = new Schema({
 });
 
 const User = model('User', userSchema);
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-})
-const upload = multer({ storage: storage });
-
-
-
 
 // 6645cf27caf450a0d159b158
 
