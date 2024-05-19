@@ -104,6 +104,6 @@ app.delete('/users/:id', async (req, res) => {
   res.send({ message: 'User deleted' });
 });
 
-app.listen(6386, () => console.log(`Server running on port `));
+app.listen(5000, () => console.log(`Server running on port `));
 
 export default app;
