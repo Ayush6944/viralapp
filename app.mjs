@@ -40,22 +40,15 @@ app.get('/users', async (req, res) => {
 
 app.post('/signup', async (req, res) => {
   try {
-    const { name, phone,email, gender } = req.body;
-    
-    const user = new User({
-      name,
-      phone,
-      gender,
-      email
-    });
+    const { name, phone, email, gender } = req.body;
+    const user = new User({ name, phone, email, gender });
     await user.save();
     res.status(201).send(user);
   } catch (error) {
-    console.error(error);
+    console.error('Error creating user:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 app.get('/users/:phone', async (req, res) => {
   try {
